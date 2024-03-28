@@ -30,7 +30,11 @@ WAZUH_MANAGER="manager-server-ip" apt-get install wazuh-agent
 
 _Enable and start the Wazuh agent service_
 
-
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-agent
+systemctl start wazuh-agent
+```
 
 
 

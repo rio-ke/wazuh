@@ -25,7 +25,7 @@ apt-get update
 * Find Manager-server ip add and paste it here
 
 ```cmd
-WAZUH_MANAGER="manager-server-ip" apt-get install wazuh-agent
+WAZUH_MANAGER="manager-server-ip" apt-get install wazuh-agent -y
 ```
 
 _Enable and start the Wazuh agent service_

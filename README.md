@@ -1,9 +1,9 @@
 # wazuh
 
+$$For Manager$$
 
-```bash
-admin
-```
-```bash
-l41Y6zeNpbaN35SFG945?MCK5P71oHNn
+_Log_check_
+
+```cmd
+tail -f /var/ossec/logs/ossec.log
 ```

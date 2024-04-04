@@ -1,5 +1,7 @@
 ## Configuration
 
+![image](https://github.com/rio-ke/wazuh/assets/88568938/7f984a08-8b65-49c1-84df-6f749ed2d855)
+
 **Ubuntu endpoint**
 
 * Perform the following steps to configure the Wazuh agent to monitor filesystem changes in the `/root` directory.

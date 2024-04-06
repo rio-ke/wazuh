@@ -1,6 +1,6 @@
 # wazuh
 
-#### passwd 
+#### Dasboard passwd 
 
 ```bash
 58teS6BwpTd0?WY+HQ*mAK7BdlXZJqt3

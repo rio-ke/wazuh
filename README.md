@@ -1,5 +1,11 @@
 # wazuh
 
+#### passwd 
+
+```bash
+58teS6BwpTd0?WY+HQ*mAK7BdlXZJqt3
+```
+
 $$For Manager$$
 
 _Log_check_

@@ -5,7 +5,7 @@
 ```bash
 64ZOKyEFIy+m?kJvcd5VAE3?a+25FEqO
 ```
-
+https://hooks.slack.com/services/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
 $$For Manager$$
 
 _Log_check_
@@ -15,3 +15,5 @@ tail -f /var/ossec/logs/ossec.log
 ```
 
 ![image](https://github.com/rio-ke/wazuh/assets/88568938/07176c24-d06a-403a-83d6-36e8cd2a9380)
+
+

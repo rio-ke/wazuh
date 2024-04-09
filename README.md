@@ -5,7 +5,6 @@
 ```bash
 64ZOKyEFIy+m?kJvcd5VAE3?a+25FEqO
 ```
-https://hooks.slack.com/services/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
 $$For Manager$$
 
 _Log_check_

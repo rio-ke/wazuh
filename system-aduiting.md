@@ -26,5 +26,34 @@ vim /var/ossec/etc/ossec.conf
 systemctl restart wazuh-agent
 ```
 
+**check log**
+
+```cmd
+tail -f /var/log/audit/audit.log
+```
+
+**Monitoring file and directory access**
+
+_Ubuntu endpoint_
+
+_Run the commands_
+
+```cmd
+echo "-w /home -p w -k audit-wazuh-w" >> /etc/audit/audit.rules
+echo "-w /home -p a -k audit-wazuh-a" >> /etc/audit/audit.rules
+echo "-w /home -p r -k audit-wazuh-r" >> /etc/audit/audit.rules
+echo "-w /home -p x -k audit-wazuh-x" >> /etc/audit/audit.rules
+```
+```cmd
+auditctl -R /etc/audit/audit.rules
+auditctl -l
+```
+* Audit configuration alerts are displayed in the Security Events and System Auditing tab of the Wazuh dashboard
+* now create file and agent server
+
+```cmd
+touch /home/malware.py
+```
+* You can visualize the alert data in the Wazuh dashboard
 
 

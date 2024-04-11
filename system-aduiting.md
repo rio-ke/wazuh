@@ -55,5 +55,6 @@ auditctl -l
 touch /home/malware.py
 ```
 * You can visualize the alert data in the Wazuh dashboard
+* go to the Security events module and apply the rule.id:80790 filter to query the alert
 
 

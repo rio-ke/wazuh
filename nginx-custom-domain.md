@@ -36,3 +36,61 @@ opensearch.ssl.certificateAuthorities: ["/etc/wazuh-dashboard/certs/root-ca.pem"
 uiSettings.overrides.defaultRoute: /app/wazuh
 opensearch_security.cookie.secure: true
 ```
+* Navigate to the /etc/nginx/conf.d directory and create a wazuh.conf file for the certificate installation
+```cmd
+unlink /etc/nginx/sites-enabled/default
+cd /etc/nginx/conf.d
+touch wazuh.conf
+```
+_Edit `wazuh.conf`_
+
+```conf
+server {
+   listen 80 default_server;
+   server_name <YOUR_DOMAIN_NAME>;
+   location / {
+      proxy_pass https://<WAZUH_DASHBOARD_IP>:<PORT_NUMBER>;
+      proxy_set_header Host $host;
+   }
+}
+```
+```conf
+server {
+    server_name wazuh.fourcodes.net;
+
+    listen 443 ssl;
+    ssl_certificate /etc/nginx/ssl/certificate/cert.pem;
+    ssl_certificate_key /etc/nginx/ssl/certificate/private.pem;
+
+    location / {
+        proxy_pass https://54.179.194.236:8443;
+        proxy_set_header Host $host;
+    }
+}
+
+server {
+    if ($host = wazuh.fourcodes.net) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name wazuh.fourcodes.net;
+    return 404;
+}
+```
+_Restart the Wazuh dashboard and the Wazuh server_
+
+```cmd
+systemctl restart wazuh-dashboard
+systemctl restart wazuh-manager
+```
+_Restart the NGINX service_
+
+```cmd
+systemctl restart nginx
+```
+_**Access the Wazuh dashboard via the configured domain name**_
+
+```url
+wazuh.fourcodes.net
+```

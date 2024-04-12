@@ -44,7 +44,7 @@ touch wazuh.conf
 ```
 _Edit `wazuh.conf`_
 
-```conf
+```cnf
 server {
    listen 80 default_server;
    server_name <YOUR_DOMAIN_NAME>;
@@ -54,7 +54,7 @@ server {
    }
 }
 ```
-```conf
+```cnf
 server {
     server_name wazuh.fourcodes.net;
 
@@ -81,13 +81,13 @@ server {
 _Restart the Wazuh dashboard and the Wazuh server_
 
 ```cmd
-systemctl restart wazuh-dashboard
-systemctl restart wazuh-manager
+sudo systemctl restart wazuh-dashboard
+sudo systemctl restart wazuh-manager
 ```
 _Restart the NGINX service_
 
 ```cmd
-systemctl restart nginx
+sudo systemctl restart nginx
 ```
 _**Access the Wazuh dashboard via the configured domain name**_
 

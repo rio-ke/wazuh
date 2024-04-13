@@ -3,7 +3,7 @@
 #### Dasboard passwd 
 
 ```bash
-64ZOKyEFIy+m?kJvcd5VAE3?a+25FEqO
+
 ```
 $$For Manager$$
 

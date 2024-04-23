@@ -5,7 +5,7 @@ _**Wazuh server node installation**_
 Install the following packages if missing.
 
 ```cmd
-apt-get install gnupg apt-transport-https
+apt install gnupg apt-transport-https
 ```
 Install the GPG key
 
@@ -17,5 +17,22 @@ echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4
 
 Update server
 
-apt-get update
+apt update
 
+_**Installing the Wazuh manager**_
+
+_Install the Wazuh manager package_
+
+```cmd
+apt install wazuh-manager -y
+```
+
+_Enable and start the Wazuh manager service_
+
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-manager
+systemctl start wazuh-manager
+```
+
+```

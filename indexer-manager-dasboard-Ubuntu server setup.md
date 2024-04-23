@@ -209,6 +209,11 @@ systemctl start wazuh-dashboard
   - Username: admin
   - Password: admin
 
+```URL
+curl https://raw.githubusercontent.com/wazuh/wazuh/v4.5.2/extensions/elasticsearch/7.x/wazuh-template.json | curl -X PUT "https://ip-add:9200/_template/wazuh" -H 'Content-Type: application/json' -d @- -u admin:admin -k
+```
+![image](https://github.com/rio-ke/wazuh/assets/88568938/557daa55-8b1e-410d-b21e-ed6a908ee604)
+
 
 
 

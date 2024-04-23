@@ -87,3 +87,128 @@ chmod 500 /etc/wazuh-indexer/certs
 chmod 400 /etc/wazuh-indexer/certs/*
 chown -R wazuh-indexer:wazuh-indexer /etc/wazuh-indexer/certs
 ```
+**Starting the service**
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-indexer
+systemctl start wazuh-indexer
+```
+```cmd
+systemctl status wazuh-indexer
+```
+**Cluster initialization.**
+
+```cmd
+/usr/share/wazuh-indexer/bin/indexer-security-init.sh
+```
+```bash
+curl -k -u admin:admin https://<WAZUH_INDEXER_IP>:9200
+```
+```cmd
+curl -k -u admin:admin https://<WAZUH_INDEXER_IP>:9200/_cat/nodes?v
+```
+![image](https://github.com/rio-ke/wazuh/assets/88568938/8629f22f-6460-4012-8e5b-acd1d55b2efa)
+
+
+**Wazuh server**
+
+* Wazuh server node installation
+* Cluster configuration for multi-node deployment
+```cmd
+apt-get -y install wazuh-manager
+```
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-manager
+systemctl start wazuh-manager
+systemctl status wazuh-manager
+```
+_**Installing Filebeat**_
+
+```cmd
+apt-get -y install filebeat
+curl -so /etc/filebeat/filebeat.yml https://packages.wazuh.com/4.7/tpl/wazuh/filebeat/filebeat.yml
+```
+* Edit the /etc/filebeat/filebeat.yml configuration file and replace the following value.
+* hosts: The list of Wazuh indexer nodes to connect to. You can use either IP addresses or hostnames. By default, the host is set to localhost hosts: ["127.0.0.1:9200"]. Replace it with your Wazuh indexer address accordingly.
+
+```yml
+# Wazuh - Filebeat configuration file
+ output.elasticsearch:
+ hosts: ["192.168.251.150:9200"]
+ protocol: https
+ username: ${username}
+ password: ${password}
+```
+```cmd
+filebeat keystore create
+```
+* Add the default username and password admin:admin to the secrets keystore.
+```cmd
+echo admin | filebeat keystore add username --stdin --force
+echo admin | filebeat keystore add password --stdin --force
+```
+* Download the alerts template for the Wazuh indexer.
+```cmd
+curl -so /etc/filebeat/wazuh-template.json https://raw.githubusercontent.com/wazuh/wazuh/v4.7.2/extensions/elasticsearch/7.x/wazuh-template.json
+chmod go+r /etc/filebeat/wazuh-template.json
+curl -s https://packages.wazuh.com/4.x/filebeat/wazuh-filebeat-0.3.tar.gz | tar -xvz -C /usr/share/filebeat/module
+```
+```cmd
+mkdir /etc/filebeat/certs
+tar -xf ./wazuh-certificates.tar -C /etc/filebeat/certs/ ./$NODE_NAME.pem ./$NODE_NAME-key.pem ./root-ca.pem
+mv -n /etc/filebeat/certs/$NODE_NAME.pem /etc/filebeat/certs/filebeat.pem
+mv -n /etc/filebeat/certs/$NODE_NAME-key.pem /etc/filebeat/certs/filebeat-key.pem
+chmod 500 /etc/filebeat/certs
+chmod 400 /etc/filebeat/certs/*
+chown -R root:root /etc/filebeat/certs
+```
+```cmd
+systemctl daemon-reload
+systemctl enable filebeat
+systemctl start filebeat
+```
+```cmd
+filebeat test output
+```
+![image](https://github.com/rio-ke/wazuh/assets/88568938/e480ca5d-50a0-43f0-95fb-381bfa26b970)
+
+
+_**Wazuh dashboard**_
+
+_Wazuh dashboard installation_
+
+```cmd
+apt -y install debhelper tar curl libcap2-bin
+apt -y install wazuh-dashboard
+```
+_Configuring the Wazuh dashboard_
+* Edit the /etc/wazuh-dashboard/opensearch_dashboards.yml file and replace the following values:
+
+* server.host: This setting specifies the host of the Wazuh dashboard server. To allow remote users to connect, set the value to the IP address or DNS name of the Wazuh dashboard server. The value 0.0.0.0 will accept all the available IP addresses of the host.
+* opensearch.hosts: The URLs of the Wazuh indexer instances to use for all your queries. The Wazuh dashboard can be configured to connect to multiple Wazuh indexer nodes in the same cluster. The addresses of the nodes can be separated by commas. For example, ["<https://10.0.0.2:9200>", "<https://10.0.0.3:9200>","<https://10.0.0.4:9200>"]
+
+_Deploying certificates_
+
+```cmd
+mkdir /etc/wazuh-dashboard/certs
+tar -xf ./wazuh-certificates.tar -C /etc/wazuh-dashboard/certs/ ./$NODE_NAME.pem ./$NODE_NAME-key.pem ./root-ca.pem
+mv -n /etc/wazuh-dashboard/certs/$NODE_NAME.pem /etc/wazuh-dashboard/certs/dashboard.pem
+mv -n /etc/wazuh-dashboard/certs/$NODE_NAME-key.pem /etc/wazuh-dashboard/certs/dashboard-key.pem
+chmod 500 /etc/wazuh-dashboard/certs
+chmod 400 /etc/wazuh-dashboard/certs/*
+chown -R wazuh-dashboard:wazuh-dashboard /etc/wazuh-dashboard/certs
+```
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-dashboard
+systemctl start wazuh-dashboard
+```
+- [ ] Access the Wazuh web interface with your credentials.
+- [ ] URL: https://<wazuh-dashboard-ip>
+  - Username: admin
+  - Password: admin
+
+
+
+

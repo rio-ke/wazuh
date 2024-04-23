@@ -83,3 +83,9 @@ systemctl daemon-reload
 systemctl enable wazuh-dashboard
 systemctl start wazuh-dashboard
 ```
+
+_Access the Wazuh web interface with your credentials_
+
+```URL
+URL: https://<wazuh-dashboard-ip>
+```

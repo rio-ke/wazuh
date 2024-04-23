@@ -1,4 +1,11 @@
+Refe
+
+https://medium.com/@akobeajiboluemmanuel/step-by-step-setup-of-wazuh-siem-on-ubuntu-22-04-3-lts-4663104fe69b
+
 # _Installing the Wazuh server step by step_
+
+
+
 
 _**Wazuh server node installation**_
 

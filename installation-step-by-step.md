@@ -72,3 +72,14 @@ _Installing the Wazuh dashboard_
 ```cmd
 apt -y install wazuh-dashboard
 ```
+
+**_Configuring the Wazuh dashboard_**
+```cmd
+vim /etc/wazuh-dashboard/opensearch_dashboards.yml
+```
+_Starting the Wazuh dashboard service_
+```cmd
+systemctl daemon-reload
+systemctl enable wazuh-dashboard
+systemctl start wazuh-dashboard
+```

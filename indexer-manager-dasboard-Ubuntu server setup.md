@@ -8,6 +8,7 @@ sudo apt update
 
 ```cmd
 mkdir wazuh-installer
+cd wazuh-installer
 curl -sO https://packages.wazuh.com/4.7/wazuh-certs-tool.sh
 curl -sO https://packages.wazuh.com/4.7/config.yml
 ```

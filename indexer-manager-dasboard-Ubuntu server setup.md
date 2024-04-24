@@ -133,6 +133,9 @@ _**Installing Filebeat**_
 apt-get -y install filebeat
 curl -so /etc/filebeat/filebeat.yml https://packages.wazuh.com/4.7/tpl/wazuh/filebeat/filebeat.yml
 ```
+```cmd
+vim /etc/filebeat/filebeat.yml
+```
 * Edit the /etc/filebeat/filebeat.yml configuration file and replace the following value.
 * hosts: The list of Wazuh indexer nodes to connect to. You can use either IP addresses or hostnames. By default, the host is set to localhost hosts: ["127.0.0.1:9200"]. Replace it with your Wazuh indexer address accordingly.
 

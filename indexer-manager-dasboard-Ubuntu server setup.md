@@ -191,6 +191,11 @@ apt -y install debhelper tar curl libcap2-bin
 apt -y install wazuh-dashboard
 ```
 _Configuring the Wazuh dashboard_
+
+```cmd
+vim etc/wazuh-dashboard/opensearch_dashboards.yml
+```
+
 * Edit the /etc/wazuh-dashboard/opensearch_dashboards.yml file and replace the following values:
 
 * server.host: This setting specifies the host of the Wazuh dashboard server. To allow remote users to connect, set the value to the IP address or DNS name of the Wazuh dashboard server. The value 0.0.0.0 will accept all the available IP addresses of the host.

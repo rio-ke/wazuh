@@ -65,6 +65,9 @@ apt-get -y install wazuh-indexer
 ```
 
 **Configuring Wazuh indexer**
+```cmd
+vim /etc/wazuh-indexer/opensearch.yml
+```
 * Edit the /etc/wazuh-indexer/opensearch.yml configuration file and replace the following values:
 * network.host: Sets the address of this node for both HTTP and transport traffic. The node will bind to this address and use it as its publish address. Accepts an IP address or a hostname. Use the same node address set in config.yml to create the SSL certificates.
 * node.name: Name of the Wazuh indexer node as defined in the config.yml file. For example, node-1.

@@ -193,7 +193,7 @@ apt -y install wazuh-dashboard
 _Configuring the Wazuh dashboard_
 
 ```cmd
-vim etc/wazuh-dashboard/opensearch_dashboards.yml
+vim /etc/wazuh-dashboard/opensearch_dashboards.yml
 ```
 
 * Edit the /etc/wazuh-dashboard/opensearch_dashboards.yml file and replace the following values:

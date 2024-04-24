@@ -174,6 +174,7 @@ chown -R root:root /etc/filebeat/certs
 systemctl daemon-reload
 systemctl enable filebeat
 systemctl start filebeat
+systemctl status filebeat
 ```
 ```cmd
 filebeat test output

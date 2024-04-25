@@ -24,6 +24,7 @@ vim /var/ossec/etc/ossec.conf
 
 ```cmd
 systemctl restart wazuh-agent
+systemctl status wazuh-agent
 ```
 
 **check log**

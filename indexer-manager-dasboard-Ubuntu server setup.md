@@ -54,8 +54,8 @@ bash ./wazuh-certs-tool.sh -A
 ```cmd
 tar -cvf ./wazuh-certificates.tar -C ./wazuh-certificates/ .
 rm -rf ./wazuh-certificates
-apt-get install debconf adduser procps
-apt-get install gnupg apt-transport-https
+apt install debconf adduser procps -y
+apt install gnupg apt-transport-https -y
 ```
 ```cmd
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
